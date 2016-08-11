@@ -15,6 +15,7 @@ import './index.scss';
 
 angular
   .module('app', [localStorageModule])
+  /** @ngInject */
   .config(($httpProvider, localStorageServiceProvider) => {
     $httpProvider.defaults.useXDomain = true;
     localStorageServiceProvider.setPrefix('sft');
