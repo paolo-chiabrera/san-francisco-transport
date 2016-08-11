@@ -10,15 +10,11 @@ RUN apt-get update
 
 RUN apt-get -y install nginx
 
-# install gulp globally
-
-RUN npm install -g gulp
-
 # cache npm install
 
 ADD package.json /tmp/package.json
 
-RUN cd /tmp && npm install
+RUN cd /tmp && npm install --dev
 
 RUN mkdir -p /home/app && cp -a /tmp/node_modules /home/app/
 
