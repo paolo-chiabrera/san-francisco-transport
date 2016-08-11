@@ -16,7 +16,6 @@
     },
     "rules": {
         // disable rules from base configurations
-        "linebreak-style": "off",
-        "no-console": "off"
+        "linebreak-style": "off"
     }
 }

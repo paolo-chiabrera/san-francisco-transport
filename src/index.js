@@ -23,5 +23,5 @@ angular
   .service('FeedService', FeedService)
   .component('app', main)
   .component('headerCmp', header)
-  .component('routePicker', routePicker)
-  .component('map', map);
+  .component('routePickerCmp', routePicker)
+  .component('mapCmp', map);

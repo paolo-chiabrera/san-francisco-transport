@@ -1,10 +1,12 @@
 <div class="route-picker">
   <div class="route-filter-wrapper">
-    <input class="route-filter" type="text" ng-model="$ctrl.searchText" placeholder="Filter by routeTag">
-  </div>  
-  <ul class="route-list">
+    <input class="route-filter" type="text" ng-model="$ctrl.searchText" placeholder="Filter by routeTag" ng-disabled="$ctrl.routeTags.length <= 0">
+  </div>
+  <h3 class="loading-msg" ng-if="$ctrl.routeTags.length <= 0">Loading routeTags...</h3>
+  <ul class="route-list" ng-if="$ctrl.routeTags.length > 0">
     <li class="route-list-item" ng-repeat="routeTag in $ctrl.routeTags | filter:$ctrl.searchText track by $index">
       <span><input type="checkbox" name="route" value="{{routeTag}}" ng-model="$ctrl.selectedTags[routeTag]" ng-change="$ctrl.changedTag()"> {{routeTag}}</span>
+      <div class="route-color" ng-style="{'background': $ctrl.routeColors[routeTag] }"></div>
     </li>
   </ul>
 </div>

@@ -22,4 +22,18 @@ describe('feed service', () => {
       vehicles: 'vehicles'
     });
   });
+
+  it('should expose all the methods', function() {
+    expect(feedService.parseXML).toEqual(jasmine.any(Function));
+    expect(feedService.getRouteColor).toEqual(jasmine.any(Function));
+    expect(feedService.getRandomColor).toEqual(jasmine.any(Function));
+    expect(feedService.get).toEqual(jasmine.any(Function));
+    expect(feedService.getAgencyList).toEqual(jasmine.any(Function));
+    expect(feedService.getVehicleLocations).toEqual(jasmine.any(Function));
+    expect(feedService.filterVehicles).toEqual(jasmine.any(Function));
+    expect(feedService.extractData).toEqual(jasmine.any(Function));
+    expect(feedService.getAllVehicles).toEqual(jasmine.any(Function));
+    expect(feedService.setBounds).toEqual(jasmine.any(Function));
+    expect(feedService.init).toEqual(jasmine.any(Function));
+  });
 });

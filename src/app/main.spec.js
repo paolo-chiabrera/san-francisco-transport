@@ -14,7 +14,7 @@ describe('main component', () => {
     const element = $compile('<app>Loading...</app>')($rootScope);
     $rootScope.$digest();
     expect(element.find('header-cmp').length).toEqual(1);
-    expect(element.find('route-picker').length).toEqual(1);
-    expect(element.find('map').length).toEqual(1);
+    expect(element.find('route-picker-cmp').length).toEqual(1);
+    expect(element.find('map-cmp').length).toEqual(1);
   }));
 });

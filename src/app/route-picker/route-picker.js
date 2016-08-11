@@ -9,6 +9,7 @@ class RoutePickerController {
     this.FeedService = FeedService;
 
     this.routeTags = [];
+    this.routeColors = {};
     this.selectedTags = {};
     this.searchText = '';
   }
@@ -24,6 +25,7 @@ class RoutePickerController {
 
   $onInit() {
     this.$rootScope.$on('routes', (ev, routes) => {
+      this.routeColors = routes;
       this.routeTags = _.keys(routes);
     });
   }

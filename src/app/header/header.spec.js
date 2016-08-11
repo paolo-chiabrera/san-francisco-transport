@@ -5,9 +5,9 @@ import header from './header';
 describe('header component', () => {
   beforeEach(() => {
     angular
-      .module('header', ['app/header/header.html'])
+      .module('app', ['app/header/header.html'])
       .component('headerCmp', header);
-    angular.mock.module('header');
+    angular.mock.module('app');
   });
 
   it('should render \'San Francisco Transport\'', angular.mock.inject(($rootScope, $compile) => {

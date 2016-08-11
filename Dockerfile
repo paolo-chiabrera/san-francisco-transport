@@ -14,7 +14,7 @@ RUN apt-get -y install nginx
 
 ADD package.json /tmp/package.json
 
-RUN cd /tmp && npm install --dev
+RUN cd /tmp && npm install
 
 RUN mkdir -p /home/app && cp -a /tmp/node_modules /home/app/
 

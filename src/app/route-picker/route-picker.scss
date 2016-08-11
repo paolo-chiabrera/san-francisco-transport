@@ -1,4 +1,5 @@
 $filter-wrapper: 40px;
+$route-hover: goldenrod;
 
 .route-picker {
   position: relative;
@@ -6,15 +7,27 @@ $filter-wrapper: 40px;
   height: 100%;
   width: 180px;
   box-shadow: 2px 0 2px rgba(0,0,0,0.4);
+  background: #efefef;
+
+  .route-color {
+    position: relative;
+    float: right;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #888;
+    border-radius: 100%;
+    margin: 3px 6px;
+  }
 
   .route-filter-wrapper {
     width: 100%;
     height: $filter-wrapper;
     border-bottom: 1px solid grey;
+    background: white;
   }
 
   .route-filter {
-    width: 150px;
+    width: 160px;
     height: 20px;
     margin: 8px;
   }
@@ -48,9 +61,19 @@ $filter-wrapper: 40px;
   .route-list-item {
     &:nth-child(odd) {
       background: #efefef;
+      &:hover {
+        background: $route-hover;
+      }
     }
     &:nth-child(even) {
       background: #e0e0e0;
+      &:hover {
+        background: $route-hover;
+      }
+    }
+
+    input {
+      margin: 4px 2px 4px 8px;
     }
   }
 }

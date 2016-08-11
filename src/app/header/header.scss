@@ -1,0 +1,27 @@
+.header {
+  position: relative;
+  display: block;
+  height: $header-height;
+  align-items: center;
+  background-color: $dark-black;
+  padding: 10px;
+  box-sizing: border-box;
+
+  p {
+    display: inline-block;
+    color: goldenrod;
+    margin: 0;
+  }
+
+  .header-title a {
+    color: goldenrod;
+  }
+
+  .last-update {
+    float: right;
+
+    span {
+      color: white;
+    }
+  }
+}

@@ -3,8 +3,9 @@ import _ from 'lodash';
 
 class MapController {
   /** @ngInject */
-  constructor($rootScope, FeedService) {
+  constructor($log, $rootScope, FeedService) {
     // imports
+    this.$log = $log;
     this.$rootScope = $rootScope;
     this.FeedService = FeedService;
 
@@ -43,7 +44,8 @@ class MapController {
 
     this.transitions = {
       in: transition().duration(500).ease(easeLinear),
-      out: transition().duration(300).ease(easeLinear)
+      out: transition().duration(300).ease(easeLinear),
+      move: transition().duration(1200).ease(easeLinear)
     };
 
     this.vehiclesLayer = null;
@@ -105,8 +107,6 @@ class MapController {
     // hide all the unselected
     const selectorNot = _.map(this.selectedRouteTags, routeTag => 'circle:not([route-tag="' + routeTag + '"])').join(',');
 
-    console.log(selectorNot);
-
     selectAll(selectorNot)
     .attr('r', this.vehicleConfig.radius.normal)
     .style('fill-opacity', this.vehicleConfig.opacity.normal);
@@ -122,7 +122,7 @@ class MapController {
     .attr('r', this.vehicleConfig.radius.selected)
     .style('fill-opacity', this.vehicleConfig.opacity.selected);
 
-    console.log('selected route --> ' + this.selectedRouteTags.join(', '));
+    this.$log.debug('selected route --> ' + this.selectedRouteTags.join(', '));
   }
 
   getRadius(d) {
@@ -140,20 +140,18 @@ class MapController {
 
     const vehicles = this.vehiclesLayer
     .selectAll('circle')
-    .data(data, d => d);
+    .data(data, d => d.id);
+
+    // update old ones
+    vehicles
+    .transition(this.transitions.move)
+    .attr('cx', d => this.projection([d.lon, d.lat])[0])
+    .attr('cy', d => this.projection([d.lon, d.lat])[1]);
 
     // exit old elements
     vehicles
     .exit()
     .remove();
-
-    // update old ones
-    vehicles
-    .attr('cx', d => this.projection([d.lon, d.lat])[0])
-    .attr('cy', d => this.projection([d.lon, d.lat])[1])
-    .attr('r', d => this.getRadius(d))
-    .style('fill-opacity', d => this.getOpacity(d))
-    .transition(this.transitions.vehicleIn);
 
     // handle the new ones
     vehicles
@@ -172,7 +170,7 @@ class MapController {
       this.selectRouteTags([d.routeTag]);
     });
 
-    console.log('displayed vehicles --> ' + vehicles._groups[0].length);
+    this.$log.debug('displayed vehicles --> ' + vehicles._groups[0].length);
   }
 
   initMap() {
@@ -196,7 +194,7 @@ class MapController {
 
     json('/app/json/streets.json', (err, json) => {
       if (err) {
-        console.error(err);
+        this.$log.error(err);
         return
       }
 
@@ -216,7 +214,7 @@ class MapController {
 
       this.vehicles = vehicles;
 
-      console.log('updated vehicles --> ' + this.vehicles.length);
+      this.$log.debug('updated vehicles --> ' + this.vehicles.length);
 
       this.drawVehicles(this.vehicles);
     });

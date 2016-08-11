@@ -11,10 +11,6 @@ body, h1, h2, h3 {
 a {
   color: white;
   text-decoration: none;
-
-  &:hover {
-    color: #5aadbb;
-  }
 }
 
 $header-height: 40px;
@@ -33,20 +29,6 @@ $dark-black: #1f1f1f;
   overflow: hidden;
 }
 
-.header {
-  position: relative;
-  display: block;
-  height: $header-height;
-  align-items: center;
-  background-color: $dark-black;
-  padding: 6px;
-  box-sizing: border-box;
-}
-
-.header-title {
-  display: inline-block;
-  margin: 5px auto;
-}
-
+@import "./app/header/header";
 @import "./app/map/map";
 @import "./app/route-picker/route-picker";
