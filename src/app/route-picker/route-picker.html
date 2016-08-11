@@ -1,0 +1,10 @@
+<div class="route-picker">
+  <div class="route-filter-wrapper">
+    <input class="route-filter" type="text" ng-model="$ctrl.searchText" placeholder="Filter by routeTag">
+  </div>  
+  <ul class="route-list">
+    <li class="route-list-item" ng-repeat="routeTag in $ctrl.routeTags | filter:$ctrl.searchText track by $index">
+      <span><input type="checkbox" name="route" value="{{routeTag}}" ng-model="$ctrl.selectedTags[routeTag]" ng-change="$ctrl.changedTag()"> {{routeTag}}</span>
+    </li>
+  </ul>
+</div>

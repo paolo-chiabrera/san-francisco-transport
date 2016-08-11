@@ -1,0 +1,22 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "root": true,
+    "globals": {
+      "expect": true
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "jasmine": true
+    },
+    "rules": {
+        // disable rules from base configurations
+        "linebreak-style": "off",
+        "no-console": "off"
+    }
+}

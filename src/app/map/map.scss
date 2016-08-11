@@ -1,0 +1,15 @@
+.map {
+  overflow:hidden;
+  height: 100%;
+  width: auto;
+  cursor: move;
+
+  .vehicle {
+    cursor: default;
+  }
+}
+#sf-map {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
